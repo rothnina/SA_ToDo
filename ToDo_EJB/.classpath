@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="ejbModule"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-17">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.jboss.ide.eclipse.as.core.server.runtime.runtimeTarget/WildFly 27.0 Runtime 1">
+		<attributes>
+			<attribute name="owner.project.facets" value="jst.ejb"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="C:/Users/nin4s/Programme/JPA_Lib_10/hibernate-core-6.1.5.Final.jar"/>
+	<classpathentry kind="lib" path="C:/Users/nin4s/Programme/JPA_Lib_10/jakarta.persistence-api-3.1.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/nin4s/Programme/JPA_Lib_10/jboss-cli-client.jar"/>
+	<classpathentry kind="lib" path="C:/Users/nin4s/Programme/JPA_Lib_10/jboss-client.jar"/>
+	<classpathentry kind="lib" path="C:/Users/nin4s/Programme/JPA_Lib_10/ojdbc10.jar"/>
+	<classpathentry kind="output" path="build/classes"/>
+</classpath>
