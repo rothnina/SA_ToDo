@@ -14,7 +14,7 @@ public class ListDao {
 	private EntityManager em;
 
 	public ListDao() {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PersistenzEinheit");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistenceToDo");
 		em = emf.createEntityManager();
 	}
 
