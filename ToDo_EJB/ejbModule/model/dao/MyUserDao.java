@@ -1,5 +1,6 @@
 package model.dao;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import jakarta.persistence.*;
@@ -21,6 +22,16 @@ public class MyUserDao {
 		if (obj == null)
 			throw new NoSuchRowException();
 		return obj;
+	}
+	public Collection<MyUser> getMyUserByName(String userName){
+		Collection<MyUser> users = em.createQuery("SELECT obj FROM MyUser obj", MyUser.class).getResultList();
+		Collection<MyUser> returnList = new ArrayList();
+		for (MyUser ur : users) {
+			if(ur.getUserName().equals(userName)) {
+				returnList.add(ur);
+			}
+		}
+		return returnList;
 	}
 
 	public Collection<MyUser> list() {
