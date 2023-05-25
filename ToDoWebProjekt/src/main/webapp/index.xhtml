@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/include.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+	<!-- INHALT DER SEITE -->
+	<ui:define name="content">
+		<h2>ToDo - App</h2>
+		<div id="loginUI">
+			<h:form id="loginFormular">
+				<div class="form-group">
+					<h:outputLabel>Username:</h:outputLabel>
+					<div title="UserName">
+						<input type="text" jsf:value="#{UserBean.aliasName}"
+							jsf:id="aliasName" jsf:required="false"
+							jsf:styleClass="form-control" />
+					</div>
+					<!-- PASSWORT -->
+					<div title="Password">
+						<h:outputLabel>Password:</h:outputLabel>
+						<input type="password" jsf:value="#{theUserBean.password}"
+							jsf:id="password" jsf:required="false"
+							jsf:styleClass="form-control" />
+					</div>
+				</div>
+
+				
+
+				<div class="row col-lg-4">
+					<!--  uebernimmt col-lg-4 von Oberklasse  -->
+
+					<!-- LOGIN -->
+					<div class="btn-lg">
+						<h:commandButton
+							action="#{theUserBean.loadSingleUser(theUserBean.aliasName, theUserBean.password, 'overview.xhtml')}"
+							value="Login" styleClass="btn-block btn-primary" />
+					</div>
+
+					<!-- CREATE USER -->
+					<div class="btn-lg">
+						<h:commandButton id="createUserButton" value="Create User"
+							styleClass="btn-primary" action="createUser.xhtml">
+						</h:commandButton>
+					</div>
+				</div>
+			</h:form>
+
+		    <h:messages globalOnly="true" />
+		 
+		 </div>
+	</ui:define>
+</ui:composition>
