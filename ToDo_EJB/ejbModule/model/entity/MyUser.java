@@ -1,5 +1,7 @@
 package model.entity;
 
+import java.util.Date;
+
 import jakarta.persistence.*;
 
 //create table myUser (
@@ -18,36 +20,29 @@ public class MyUser {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-//	@Column(name="myUserId")
 	private int myUserId;
 	
-//	@Column(name = "firstName")
 	private String firstName;
 
-//	@Column(name = "lastName")
 	private String lastName;
 
-//	@Column(name = "birthdate")
-	private int birthdate;
+	@Column(name = "birthday")
+	private Date birthdate;
 
-//	@Column(name = "registrationDate")
-	private String registrationDate;
+	private Date registrationDate;
 
-//	@Column(name = "deregistrationDate")
-	private int deregistrationDate;
+	private Date deregistrationDate;
 
-//	@Column(name = "userName")
 	private String userName;
 	
-//	@Column(name = "password")
 	private String password;
 
 	public MyUser() {}
 	
 	
-	public MyUser(int myUserId, String firstName, String lastName, int birthdate, String registrationDate,
-			int deregistrationDate, String userName, String password) {
-		super();
+
+	public MyUser(int myUserId, String firstName, String lastName, Date birthdate, Date registrationDate,
+			Date deregistrationDate, String userName, String password) {
 		this.myUserId = myUserId;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -57,6 +52,7 @@ public class MyUser {
 		this.userName = userName;
 		this.password = password;
 	}
+
 
 
 	public int getMyUserId() {
@@ -79,33 +75,40 @@ public class MyUser {
 		return lastName;
 	}
 
+	public Date getBirthdate() {
+		return birthdate;
+	}
+
+
+	public void setBirthdate(Date birthdate) {
+		this.birthdate = birthdate;
+	}
+
+
+	public Date getRegistrationDate() {
+		return registrationDate;
+	}
+
+
+	public void setRegistrationDate(Date registrationDate) {
+		this.registrationDate = registrationDate;
+	}
+
+
+	public Date getDeregistrationDate() {
+		return deregistrationDate;
+	}
+
+
+	public void setDeregistrationDate(Date deregistrationDate) {
+		this.deregistrationDate = deregistrationDate;
+	}
+
+
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
 
-	public int getBirthdate() {
-		return birthdate;
-	}
-
-	public void setBirthdate(int birthdate) {
-		this.birthdate = birthdate;
-	}
-
-	public String getRegistrationDate() {
-		return registrationDate;
-	}
-
-	public void setRegistrationDate(String registrationDate) {
-		this.registrationDate = registrationDate;
-	}
-
-	public int getDeregistrationDate() {
-		return deregistrationDate;
-	}
-
-	public void setDeregistrationDate(int deregistrationDate) {
-		this.deregistrationDate = deregistrationDate;
-	}
 
 	public String getUserName() {
 		return userName;

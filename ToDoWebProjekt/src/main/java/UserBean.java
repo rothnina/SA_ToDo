@@ -23,7 +23,7 @@ import model.entity.UserRights;
 public class UserBean implements Serializable {
 	private static final long serialVersionUID = 5064399780143563858L;
 
-	public static final String EJBName = "java:global/AuftragsbearbeitungEJB/MyUserManager!session.MyUserManagerInterface";
+	public static final String EJBName = "java:global/ToDo_EJB/MyUserDaoInterface!dao.MyUserDao";
 
 	@EJB(mappedName = EJBName)
 	private MyUserDao userManager;
