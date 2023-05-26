@@ -1,0 +1,60 @@
+package model.dao;
+
+import java.util.Collection;
+
+import jakarta.ejb.*;
+import jakarta.persistence.*;
+import model.entity.List;
+
+
+// public class MyUserDao implements java.io.Serializable, MyUserDaoInterface { // traditionell
+
+@Stateless
+@TransactionManagement(TransactionManagementType.CONTAINER) // = Default-Einstellung, i.e. Server übernimmt TA-Mgmt!
+@Remote(ListDaoInterface.class)
+public class ListDao implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
+
+	@PersistenceContext
+	private EntityManager em;
+
+	public ListDao() {
+	}
+
+	public List getByPrimaryKey(int primaryKey) throws NoSuchRowException{
+		List obj = em.find(List.class, primaryKey); 
+		if (obj == null)
+			throw new NoSuchRowException();
+		return obj;
+	}
+	
+	public Collection<List> getListsFromUser(int creator){
+		return em.createQuery("SELECT obj FROM MyList obj WHERE obj.creator = 1?", List.class)
+				.setParameter(1, creator).getResultList();
+	}
+
+	public Collection<List> list(){
+		return em.createQuery("SELECT obj FROM MyList obj", List.class).getResultList();
+	}
+
+	public void save(List arg) {
+		List obj = em.find(List.class, arg.getListId());
+		if (obj == null)
+			em.persist(arg); // insert
+		else
+			em.merge(arg); // update
+	}
+
+	public void remove(int primaryKey) throws NoSuchRowException{
+		List obj = em.find(List.class, primaryKey);
+		if (obj != null)
+			em.remove(obj); // insert
+		else
+			throw new NoSuchRowException();
+	}
+	
+
+	@Remove
+	public void close() {
+	}
+}
