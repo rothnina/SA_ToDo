@@ -9,6 +9,7 @@ import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
 import model.dao.*;
+import model.dao.NoSuchRowException;
 
 import model.entity.List;
 import model.entity.ListEntry;
@@ -44,18 +45,12 @@ public class UserBean implements Serializable {
 		return returnList;
 	}
 
-	public Collection<MyUser> findByName(String name) {
-		try {
-			return userManager.getMyUserByName(name);
-		} catch (NoSuchRowException e) {
-			String message = "Failed to retrieve data from webservice: " + e;
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_INFO, message, null));
-		}
-		return null;
+	public Collection<MyUser> findByName(String name) throws NoSuchRowException {
+		return userManager.getMyUserByName(name);
+		
 	}
 
-	public Collection<MyUser> findByAliasNameAndPasswordList(String aliasName, String password) {
+	/*public Collection<MyUser> findByAliasNameAndPasswordList(String aliasName, String password) {
 		Collection<MyUser> returnList = new ArrayList<MyUser>();
 		returnList.add(findByAliasNameAndPassword(aliasName, password));
 		return returnList;
@@ -87,7 +82,7 @@ public class UserBean implements Serializable {
 				throw e;
 			}
 		return nextSite;
-	}
+	}*/
 
 	public Collection<MyUser> list() {
 		return userManager.list();
