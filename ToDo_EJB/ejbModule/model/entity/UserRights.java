@@ -2,27 +2,34 @@ package model.entity;
 
 import jakarta.persistence.*;
 
+import model.entity.*;
+
 //create table userRights (
 //	    myUser references myUser(myUserId) not null,
 //	    listId references myList (listId) not null,
-//	    right integer,
-//	    primary key (myuser, listId), 
-//	    foreign key (myUser) references user(userId),
-//	    foreign key (listId) references myList(listId) 
+//	    right integer, 
+
+// right varchar2(20) check ( right in ( 'KEINE', 'ALLE', 'WASWEISSICH')
+//	    primary key (myuser, listId) 
 //	);
 
 @Entity
-@Table(name="userRights")
+@Table(name = "userRights")
 public class UserRights implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@EmbeddedId
-	private UserRightsPK userRightsPK;	
+	private UserRightsPK userRightsPK;
+
 	
-	@Column(name="right")
 	private int right;
+
+	@ManyToOne
+	@JoinColumn(name = "myUser", insertable = false, updatable = false)
+	private MyUser myUser;
 	
-	public UserRights() {}
+	public UserRights() {
+	}
 
 	public int getRight() {
 		return right;
@@ -36,5 +43,5 @@ public class UserRights implements java.io.Serializable {
 	public String toString() {
 		return "UserRights [userRightsPK=" + userRightsPK + ", right=" + right + "]";
 	}
-	
+
 }

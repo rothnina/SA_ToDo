@@ -7,14 +7,14 @@ import java.util.Date;
 import jakarta.persistence.*;
 
 
-
 //create table myList (
-//	    listId integer primary key,
-//	    creator integer, 
-//	    creationDate date,
-//	    listName varchar2(20),
-//	    foreign key (creator) references user (userid)
-//	);
+//    listId integer primary key,
+//    creator integer, 
+//    creationDate date,
+//    listName varchar2(20),
+//    foreign key (creator) references myuser (myuserid)
+//);
+//
 
 @Entity
 @Table(name = "myList")
@@ -33,6 +33,8 @@ public class List implements Serializable {
 	
 	@Column(name = "listName")
 	private String listName; 
+	
+	
 
 	public List() {
 	}

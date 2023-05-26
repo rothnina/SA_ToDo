@@ -1,7 +1,5 @@
 package model.dao;
 
-import java.util.ArrayList;
-
 import java.util.Collection;
 
 import jakarta.ejb.*;

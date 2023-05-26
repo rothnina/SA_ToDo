@@ -21,7 +21,7 @@ import model.entity.UserRights;
 @Named(value= "MyUserBean")
 @SessionScoped 
 public class UserBean implements Serializable {
-	private static final long serialVersionUID = 5064399780143563858L;
+	private static final long serialVersionUID = 1L;
 
 	public static final String EJBName = "java:global/ToDo_EJB/MyUserDaoInterface!dao.MyUserDao";
 
@@ -39,13 +39,12 @@ public class UserBean implements Serializable {
 		return null;
 	}
 
-	public Collection<MyUser> findByPrimaryKeyList(int primaryKey) {
-		Collection<MyUser> returnList = new ArrayList<MyUser>();
-		returnList.add(findByPrimaryKey(primaryKey));
-		return returnList;
+	public MyUser getByPrimaryKey(int primaryKey) throws NoSuchRowException {
+		
+		return userManager.getByPrimaryKey(primaryKey);
 	}
 
-	public Collection<MyUser> findByName(String name) throws NoSuchRowException {
+	public MyUser findByName(String name) throws NoSuchRowException {
 		return userManager.getMyUserByName(name);
 		
 	}
