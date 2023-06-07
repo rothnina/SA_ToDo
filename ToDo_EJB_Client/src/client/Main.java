@@ -1,5 +1,7 @@
 package client;
 
+import java.util.Date;
+
 //import java.util.ArrayList;
 //import java.util.Calendar;
 //import java.util.Collection;
@@ -18,6 +20,7 @@ public class Main {
 		InitialContext ctx;
 		try {
 			ctx = new InitialContext();
+			// Testen MyUser
 			MyUserDaoInterface myUserDaoInterface = (MyUserDaoInterface) ctx
 					.lookup("ToDo_EJB/MyUserDao!model.dao.MyUserDaoInterface");
 
@@ -26,9 +29,26 @@ public class Main {
 				System.out.println("\tuserRights = " + obj.getUserRights());
 				System.out.println("\tlist = " + obj.getList());
 			}
+			// get User by Id
+			MyUser obj = myUserDaoInterface.getByPrimaryKey(1);
+			System.out.println("UserById:\n  1 = " + obj);
+			
+			// get User by Username
+			obj = myUserDaoInterface.getMyUserByName("h");
+			System.out.println("User by Name:\n  h = " + obj);
+			
+			// save a new User
+			obj = new MyUser("Sara","Pech",new Date(06-06-2023),new Date(06-06-2023),null, "SP","SPassword");
+			System.out.println("UserId from new User: " + obj.getMyUserId());
+			myUserDaoInterface.save(obj);
+			for (MyUser o : myUserDaoInterface.list()) {
+				System.out.println("obj = " + o);
+			}
+
 			myUserDaoInterface.close();
 		} catch (NamingException e) {
-			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}catch (NoSuchRowException e) {
 			e.printStackTrace();
 		}
 
