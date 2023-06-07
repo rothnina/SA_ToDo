@@ -60,6 +60,17 @@ public class MyUser implements java.io.Serializable {
 		this.userName = userName;
 		this.password = password;
 	}
+	
+	public MyUser(String firstName, String lastName, Date birthdate, Date registrationDate,
+			Date deregistrationDate, String userName, String password) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.birthdate = birthdate;
+		this.registrationDate = registrationDate;
+		this.deregistrationDate = deregistrationDate;
+		this.userName = userName;
+		this.password = password;
+	}
 
 	public int getMyUserId() {
 		return myUserId;

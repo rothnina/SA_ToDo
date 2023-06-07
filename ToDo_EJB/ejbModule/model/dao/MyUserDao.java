@@ -1,5 +1,6 @@
 package model.dao;
 
+import java.math.BigInteger;
 import java.util.Collection;
 
 import jakarta.ejb.*;
@@ -39,15 +40,21 @@ public class MyUserDao implements java.io.Serializable {
 //	}
 
 	public MyUser getMyUserByName(String userName) {
-		return em.createQuery("SELECT obj FROM MyUser obj WHERE obj.userName = 1?", MyUser.class)
-				.setParameter(1, userName).getSingleResult();
+		return em.createQuery("SELECT obj FROM MyUser obj WHERE obj.userName = ?1", MyUser.class).setParameter(1, userName).getSingleResult();
 	}
 
 	public Collection<MyUser> list() {
 		return em.createQuery("SELECT obj FROM MyUser obj", MyUser.class).getResultList();
 	}
 
+	public int calculateNextId() {
+		int nextId = (int) em.createQuery("SELECT coalesce(max(x.id), 0) FROM MyUser x").getSingleResult();
+		return (nextId+1);
+	}
 	public void save(MyUser arg) {
+		if ( arg.getMyUserId() == 0) {
+			arg.setMyUserId(calculateNextId());
+		}
 		MyUser obj = em.find(MyUser.class, arg.getMyUserId());
 		if (obj == null)
 			em.persist(arg); // insert
