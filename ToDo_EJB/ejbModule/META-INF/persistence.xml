@@ -4,11 +4,13 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
 	<persistence-unit name="persistenceToDo" transaction-type="JTA">
 		<jta-data-source>java:jboss/datasources/OracleDS</jta-data-source>
+		<class>model.entity.List</class>
 		<class>model.entity.MyUser</class>
+		<class>model.entity.ListEntry</class>
 		<class>model.entity.UserRights</class>
 		<class>model.entity.UserRightsPK</class>
-		<class>model.entity.List</class>
-		<class>model.entity.ListEntry</class>
+		
+		
  		<properties>
 			<property name="hibernate.hbm2ddl.auto" value="none"/>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.OracleDialect"/>
