@@ -26,8 +26,18 @@ public class Main {
 			// Testen MyUser
 			MyUserDaoInterface myUserDaoInterface = (MyUserDaoInterface) ctx
 					.lookup("ToDo_EJB/MyUserDao!model.dao.MyUserDaoInterface");
+			
 			ListDaoInterface listDaoInterface = (ListDaoInterface) ctx
 					.lookup("ToDo_EJB/ListDao!model.dao.ListDaoInterface");
+			
+			UserRightsDaoInterface userRightsDaoInterface = (UserRightsDaoInterface) ctx
+					.lookup("ToDo_EJB/UserRightsDao!model.dao.UserRightsDaoInterface");
+			
+			for (UserRights ur : userRightsDaoInterface.list()) {
+				System.out.println("UserRight = " + ur);
+				System.out.println("UserRight = " + ur.getList());
+				
+			}
 
 			for (List list : listDaoInterface.list())
 				System.out.println("List = " + list);
@@ -46,13 +56,13 @@ public class Main {
 			System.out.println("User by Name:\n  h = " + obj);
 
 			// save a new User
-			obj = new MyUser("Sara", "Pech", new Date(06 - 06 - 2023), new Date(06 - 06 - 2023), null, "SP",
-					"SPassword");
-			System.out.println("UserId from new User: " + obj.getMyUserId());
-			myUserDaoInterface.save(obj);
-			for (MyUser o : myUserDaoInterface.list()) {
-				System.out.println("obj = " + o);
-			}
+//			obj = new MyUser("Sara", "Pech", new Date(06 - 06 - 2023), new Date(06 - 06 - 2023), null, "SP",
+//					"SPassword");
+//			System.out.println("UserId from new User: " + obj.getMyUserId());
+//			myUserDaoInterface.save(obj);
+//			for (MyUser o : myUserDaoInterface.list()) {
+//				System.out.println("obj = " + o);
+//			}
 
 			myUserDaoInterface.close();
 		} catch (NamingException e) {

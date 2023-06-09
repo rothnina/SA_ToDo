@@ -42,8 +42,7 @@ public class MyUser implements java.io.Serializable {
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "myUser")
 	private Collection<UserRights> userRights;
 
-	@OneToMany(fetch = FetchType.EAGER)
-	@JoinColumn(name = "creator")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "creator")
 	private Collection<List> list;
 
 	public MyUser() {

@@ -25,8 +25,9 @@ public class List implements Serializable {
 	@Column(name = "listId") //not necessary because the name is identical with them in the database
 	private int listId;
 
-	@Column(name = "creator")
-	private int creator;
+	@ManyToOne
+	@JoinColumn(name = "creator")
+	private MyUser creator;
 
 	@Column(name = "creationDate")
 	private Date creationDate;
@@ -39,7 +40,7 @@ public class List implements Serializable {
 	public List() {
 	}
 
-	public List(int listId, int creator, Date creationDate, String listName ) {
+	public List(int listId, MyUser creator, Date creationDate, String listName ) {
 		this.listId = listId; 
 		this.creator = creator; 
 		this.creationDate = creationDate; 
@@ -56,11 +57,11 @@ public class List implements Serializable {
 		this.listId = listId;
 	}
 
-	public int getCreator() {
+	public MyUser getCreator() {
 		return creator;
 	}
 
-	public void setCreator(int creator) {
+	public void setCreator(MyUser creator) {
 		this.creator = creator;
 	}
 

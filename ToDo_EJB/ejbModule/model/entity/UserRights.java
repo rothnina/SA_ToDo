@@ -28,6 +28,10 @@ public class UserRights implements java.io.Serializable {
 	@JoinColumn(name = "myUser", insertable = false, updatable = false)
 	private MyUser myUser;
 	
+	@ManyToOne
+	@JoinColumn(name = "listId", insertable = false, updatable = false)
+	private List list;
+	
 	public UserRights() {
 	}
 
@@ -37,6 +41,15 @@ public class UserRights implements java.io.Serializable {
 
 	public void setRight(int right) {
 		this.right = right;
+	}
+
+	
+	public List getList() {
+		return list;
+	}
+
+	public void setList(List list) {
+		this.list = list;
 	}
 
 	@Override
