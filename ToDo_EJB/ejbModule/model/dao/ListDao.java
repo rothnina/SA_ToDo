@@ -29,12 +29,12 @@ public class ListDao implements java.io.Serializable {
 	}
 	
 	public Collection<List> getListsFromUser(int creator){
-		return em.createQuery("SELECT obj FROM MyList obj WHERE obj.creator = 1?", List.class)
+		return em.createQuery("SELECT obj FROM List obj WHERE obj.creator = 1?", List.class)
 				.setParameter(1, creator).getResultList();
 	}
 
 	public Collection<List> list(){
-		return em.createQuery("SELECT obj FROM MyList obj", List.class).getResultList();
+		return em.createQuery("SELECT obj FROM List obj", List.class).getResultList();
 	}
 
 	public void save(List arg) {

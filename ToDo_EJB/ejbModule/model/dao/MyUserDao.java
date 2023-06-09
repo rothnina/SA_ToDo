@@ -1,6 +1,5 @@
 package model.dao;
 
-import java.math.BigInteger;
 import java.util.Collection;
 
 import jakarta.ejb.*;
@@ -54,6 +53,8 @@ public class MyUserDao implements java.io.Serializable {
 	public void save(MyUser arg) {
 		if ( arg.getMyUserId() == 0) {
 			arg.setMyUserId(calculateNextId());
+		}else {
+			
 		}
 		MyUser obj = em.find(MyUser.class, arg.getMyUserId());
 		if (obj == null)
