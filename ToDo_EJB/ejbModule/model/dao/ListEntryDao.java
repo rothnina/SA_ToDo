@@ -46,6 +46,11 @@ public class ListEntryDao implements java.io.Serializable {
 	public Collection<ListEntry> list(){
 		return em.createQuery("SELECT obj FROM ListEntry obj", ListEntry.class).getResultList();
 	}
+	
+	public int calculateNextId() {
+		int nextId = (int) em.createQuery("SELECT coalesce(max(x.id), 0) FROM ListEntry x").getSingleResult();
+		return (nextId+1);
+	}
 
 	public void save(ListEntry arg) {
 		ListEntry obj = em.find(ListEntry.class, arg.getEntryId());

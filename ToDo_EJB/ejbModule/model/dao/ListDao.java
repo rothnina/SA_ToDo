@@ -36,6 +36,11 @@ public class ListDao implements java.io.Serializable {
 	public Collection<List> list(){
 		return em.createQuery("SELECT obj FROM List obj", List.class).getResultList();
 	}
+	
+	public int calculateNextId() {
+		int nextId = (int) em.createQuery("SELECT coalesce(max(x.id), 0) FROM List x").getSingleResult();
+		return (nextId+1);
+	}
 
 	public void save(List arg) {
 		List obj = em.find(List.class, arg.getListId());
