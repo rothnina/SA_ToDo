@@ -32,14 +32,17 @@ public class ListEntry implements Serializable {
 	@Column(name = "entryId") //not necessary because the name is identical with them in the database
 	private int entryId;
 
-	@Column(name = "listId")
-	private int listId;
+	@ManyToOne
+	@JoinColumn(name = "listId")
+	private List list;
 
-	@Column(name = "responsible")
-	private int responsible;
+	@ManyToOne
+	@JoinColumn(name = "responsible")
+	private MyUser responsible;
 	
-	@Column(name = "creator")
-	private int creator; 
+	@ManyToOne
+	@JoinColumn(name = "creator")
+	private MyUser creator; 
 	
 	@Column(name = "creationDate")
 	private Date creationDate;
@@ -56,9 +59,9 @@ public class ListEntry implements Serializable {
 	public ListEntry() {
 	}
 
-	public ListEntry(int entryId, int listId, int responsible, int creator, Date creationDate, Date endTime, int status, String toDo ) {
+	public ListEntry(int entryId, List list, MyUser responsible, MyUser creator, Date creationDate, Date endTime, int status, String toDo ) {
 		this.entryId = entryId; 
-		this.listId = listId; 
+		this.list = list; 
 		this.responsible = responsible; 
 		this.creator = creator; 
 		this.creationDate = creationDate; 
@@ -75,27 +78,27 @@ public class ListEntry implements Serializable {
 		this.entryId = entryId;
 	}
 
-	public int getListId() {
-		return listId;
+	public List getListId() {
+		return list;
 	}
 
-	public void setListId(int listId) {
-		this.listId = listId;
+	public void setListId(List list) {
+		this.list = list;
 	}
 
-	public int getResponsible() {
+	public MyUser getResponsible() {
 		return responsible;
 	}
 
-	public void setResponsible(int responsible) {
+	public void setResponsible(MyUser responsible) {
 		this.responsible = responsible;
 	}
 
-	public int getCreator() {
+	public MyUser getCreator() {
 		return creator;
 	}
 
-	public void setCreator(int creator) {
+	public void setCreator(MyUser creator) {
 		this.creator = creator;
 	}
 
@@ -137,7 +140,7 @@ public class ListEntry implements Serializable {
 
 	@Override
 	public String toString() {
-		return "ListEntry [entryId=" + entryId + ", listId=" + listId + ", responsible=" + responsible + ", creator="
+		return "ListEntry [entryId=" + entryId + ", listId=" + list + ", responsible=" + responsible + ", creator="
 				+ creator + ", creationDate=" + creationDate + ", endTime=" + endTime + ", status=" + status + ", toDo="
 				+ toDo + "]";
 	}
