@@ -5,13 +5,14 @@ import java.util.Collection;
 import jakarta.ejb.Remote;
 import jakarta.ejb.Remove;
 import model.entity.List;
+import model.entity.MyUser;
 
 @Remote
 public interface ListDaoInterface {
 
 	public List getByPrimaryKey(int primaryKey) throws NoSuchRowException;
 	
-	public Collection<List> getListsFromUser(String userName);
+	public Collection<List> getListsFromUser(MyUser creator);
 
 	public Collection<List> list();
 

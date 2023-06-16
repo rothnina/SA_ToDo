@@ -5,6 +5,7 @@ import java.util.Collection;
 import jakarta.ejb.*;
 import jakarta.persistence.*;
 import model.entity.List;
+import model.entity.MyUser;
 
 
 // public class MyUserDao implements java.io.Serializable, MyUserDaoInterface { // traditionell
@@ -28,8 +29,8 @@ public class ListDao implements java.io.Serializable {
 		return obj;
 	}
 	
-	public Collection<List> getListsFromUser(int creator){
-		return em.createQuery("SELECT obj FROM List obj WHERE obj.creator = 1?", List.class)
+	public Collection<List> getListsFromUser(MyUser creator){
+		return em.createQuery("SELECT obj FROM List obj WHERE obj.creator = ?1", List.class)
 				.setParameter(1, creator).getResultList();
 	}
 
