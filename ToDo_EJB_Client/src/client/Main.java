@@ -30,6 +30,9 @@ public class Main {
 			ListDaoInterface listDaoInterface = (ListDaoInterface) ctx
 					.lookup("ToDo_EJB/ListDao!model.dao.ListDaoInterface");
 			
+			ListEntryDaoInterface listEntryDaoInterface = (ListEntryDaoInterface) ctx
+					.lookup("ToDo_EJB/ListEntryDao!model.dao.ListEntryDaoInterface"); 
+			
 			UserRightsDaoInterface userRightsDaoInterface = (UserRightsDaoInterface) ctx
 					.lookup("ToDo_EJB/UserRightsDao!model.dao.UserRightsDaoInterface");
 			
@@ -39,8 +42,13 @@ public class Main {
 				
 			}
 
-			for (List list : listDaoInterface.list())
+			for (List list : listDaoInterface.list()) {
 				System.out.println("List = " + list);
+			}
+			
+			for (ListEntry listEntry : listEntryDaoInterface.list()) {
+				System.out.println("ListEntry = " + listEntry);
+			}
 
 			for (MyUser obj : myUserDaoInterface.list()) {
 				System.out.println("obj = " + obj);
@@ -70,6 +78,9 @@ public class Main {
 		} catch (NoSuchRowException e) {
 			e.printStackTrace();
 		}
+		
+		GUI gui = new GUI(); 
+		gui.open(); 
 
 	}
 
