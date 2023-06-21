@@ -4,7 +4,9 @@ import java.util.Collection;
 
 import jakarta.ejb.*;
 import jakarta.persistence.*;
+import model.entity.List;
 import model.entity.ListEntry;
+import model.entity.MyUser;
 
 
 // public class MyUserDao implements java.io.Serializable, MyUserDaoInterface { // traditionell
@@ -28,21 +30,26 @@ public class ListEntryDao implements java.io.Serializable {
 		return obj;
 	}
 	
-	public Collection<ListEntry> getListEntriesFromList(int listId){
-		return em.createQuery("SELECT obj FROM ListEntry obj WHERE obj.listId = 1?", ListEntry.class)
+	public Collection<ListEntry> getListEntriesFromList(List listId){
+		return em.createQuery("SELECT obj FROM ListEntry obj WHERE obj.list = ?1", ListEntry.class)
 				.setParameter(1, listId).getResultList();
 	}
 	
-	public Collection<ListEntry> getListEntriesFromCreator(int creator){
-		return em.createQuery("SELECT obj FROM ListEntry obj WHERE obj.creator = 1?", ListEntry.class)
+	public Collection<ListEntry> getListEntriesFromCreator(MyUser creator){
+		return em.createQuery("SELECT obj FROM ListEntry obj WHERE obj.creator = ?1", ListEntry.class)
 				.setParameter(1, creator).getResultList();
 	}
 	
-	public Collection<ListEntry> getListEntriesFromResponsible(int responsible){
-		return em.createQuery("SELECT obj FROM ListEntry obj WHERE obj.responsible = 1?", ListEntry.class)
+	public Collection<ListEntry> getListEntriesFromResponsible(MyUser responsible){
+		return em.createQuery("SELECT obj FROM ListEntry obj WHERE obj.responsible = ?1", ListEntry.class)
 				.setParameter(1, responsible).getResultList();
 	}
 
+	public Collection<ListEntry> getListEntriesFromListByUser(List list, MyUser user){
+		return em.createQuery("SELECT obj FROM ListEntry obj WHERE obj.list = ?1 and obj.responsible = ?2", ListEntry.class)
+				.setParameter(1, list).setParameter(2, user).getResultList(); 
+	}
+	
 	public Collection<ListEntry> list(){
 		return em.createQuery("SELECT obj FROM ListEntry obj", ListEntry.class).getResultList();
 	}

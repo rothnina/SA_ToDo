@@ -13,6 +13,8 @@ public interface ListDaoInterface {
 	public List getByPrimaryKey(int primaryKey) throws NoSuchRowException;
 	
 	public Collection<List> getListsFromUser(MyUser creator);
+	
+	public List getListByName(String listName); 
 
 	public Collection<List> list();
 

@@ -33,6 +33,10 @@ public class ListDao implements java.io.Serializable {
 		return em.createQuery("SELECT obj FROM List obj WHERE obj.creator = ?1", List.class)
 				.setParameter(1, creator).getResultList();
 	}
+	
+	public List getListByName(String listName) {
+		return em.createQuery("SELECT obj FROM List obj WHERE obj.listName = ?1", List.class).setParameter(1, listName).getSingleResult(); 
+	}
 
 	public Collection<List> list(){
 		return em.createQuery("SELECT obj FROM List obj", List.class).getResultList();

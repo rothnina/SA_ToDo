@@ -24,17 +24,17 @@ public class UserRightsDao implements java.io.Serializable {
 	}
 
 	public Collection<UserRights> getByMyUser(int myUser) throws NoSuchRowException{
-		return em.createQuery("SELECT obj FROM UserRights obj WHERE obj.myUser = 1?", UserRights.class)
+		return em.createQuery("SELECT obj FROM UserRights obj WHERE obj.myUser = ?1", UserRights.class)
 				.setParameter(1, myUser).getResultList();
 	}
 	
 	public Collection<UserRights> getByListId(int listId) throws NoSuchRowException{
-		return em.createQuery("SELECT obj FROM UserRights obj WHERE obj.listId = 1?", UserRights.class)
+		return em.createQuery("SELECT obj FROM UserRights obj WHERE obj.listId = ?1", UserRights.class)
 				.setParameter(1, listId).getResultList();
 	}
 	
 	public UserRights getByMyUserAndListId(int myUser, int listId) throws NoSuchRowException{
-		return em.createQuery("SELECT * FROM UserRights WHERE myUser = 1? and listId = 2?", UserRights.class)
+		return em.createQuery("SELECT * FROM UserRights WHERE myUser = ?1 and listId = ?1", UserRights.class)
 				.setParameter(1, myUser).setParameter(2, listId).getSingleResult();
 	}
 
