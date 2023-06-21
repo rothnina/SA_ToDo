@@ -2,6 +2,7 @@ package client;
 
 import org.eclipse.swt.widgets.*;
 
+import model.dao.ListDaoInterface;
 import model.entity.MyUser;
 
 import org.eclipse.swt.SWT;
@@ -12,6 +13,7 @@ import org.eclipse.swt.layout.*;
 public class GUI {
 	private Display display; 
 	private Shell shell; 
+	private List list; 
 	private Label l_username;
 	private Text username;
 	private Label l_password;
@@ -61,13 +63,20 @@ public class GUI {
 		l_label = new Label(shell, SWT.CENTER);
 		l_label.setText("Listen");
 		l_label.setFont(new Font(display, "Arial", 14, SWT.BOLD));
+		
+		Group listGroup = new Group(shell, SWT.LEFT); 
+		RowLayout layout = new RowLayout(SWT.VERTICAL); 
+		listGroup.setLayout(layout);
+
+		list = new List(listGroup, SWT.BORDER | SWT.SINGLE | SWT.V_SCROLL); 
+		list.setLayoutData(new RowData(240, 100));
 	}
 	
 	public void createListEntryArea() {
 		
 	}
 	public void createListeners() {
-		login.addSelectionListener(new SelectionAdapterLogin(username, password, user));
+		login.addSelectionListener(new SelectionAdapterLogin(shell,list, username, password, user));
 		
 	}
 	

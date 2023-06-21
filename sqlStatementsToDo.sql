@@ -58,6 +58,10 @@ insert into myList values ( 200, '2', to_date('2023-02-01', 'yyyy-mm-dd'),'Liste
 insert into myList values ( 300, '3', to_date('2023-04-04', 'yyyy-mm-dd'),'Liste 3' );
 insert into myList values ( 400, '4', to_date('2023-04-05', 'yyyy-mm-dd'),'Liste 4' );
 insert into myList values ( 500, '5', to_date('2023-11-11', 'yyyy-mm-dd'),'Liste 5' );
+insert into myList values ( 600, '4', to_date('2023-04-05', 'yyyy-mm-dd'),'Liste 6' );
+insert into myList values ( 700, '4', to_date('2023-04-05', 'yyyy-mm-dd'),'Liste 7' );
+insert into myList values ( 800, '4', to_date('2023-04-05', 'yyyy-mm-dd'),'Liste 8' );
+
 
 insert into userRights values ( 1, 100, 1);
 insert into userRights values ( 1, 200, 0);
@@ -74,7 +78,11 @@ insert into userRights values ( 3, 500, 0);
 
 
 
-insert into listEntry (entryId, listId, responsible, creator, creationDate,endTime,status, toDo) values (1, 100, 1, 1, to_date('2023-02-01', 'yyyy-mm-dd'), to_date('2023-08-01', 'yyyy-mm-dd'), 1, 'Kochen'); 
+insert into listEntry (entryId, listId, responsible, creator, creationDate,endTime,status, toDo) values (1, 400, 4, 1, to_date('2023-02-01', 'yyyy-mm-dd'), to_date('2023-08-01', 'yyyy-mm-dd'), 1, 'Lernen'); 
+insert into listEntry (entryId, listId, responsible, creator, creationDate,endTime,status, toDo) values (2, 400, 4, 1, to_date('2023-02-01', 'yyyy-mm-dd'), to_date('2023-08-01', 'yyyy-mm-dd'), 1, 'Prüfung scheiben'); 
+insert into listEntry (entryId, listId, responsible, creator, creationDate,endTime,status, toDo) values (3, 100, 1, 4, to_date('2023-02-01', 'yyyy-mm-dd'), to_date('2023-08-01', 'yyyy-mm-dd'), 1, 'Programmieren'); 
+insert into listEntry (entryId, listId, responsible, creator, creationDate,endTime,status, toDo) values (4, 100, 1, 4, to_date('2023-02-01', 'yyyy-mm-dd'), to_date('2023-08-01', 'yyyy-mm-dd'), 1, 'Abgabe'); 
+insert into listEntry (entryId, listId, responsible, creator, creationDate,endTime,status, toDo) values (5, 100, 1, 1, to_date('2023-02-01', 'yyyy-mm-dd'), to_date('2023-08-01', 'yyyy-mm-dd'), 1, 'Präsentation vorbereiten'); 
 
 
 commit;

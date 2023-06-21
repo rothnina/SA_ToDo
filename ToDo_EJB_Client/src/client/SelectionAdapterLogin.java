@@ -16,17 +16,19 @@ import model.entity.MyUser;
 
 public class SelectionAdapterLogin extends SelectionAdapter {
 	private InitialContext ctx;
+	private Shell parent; 
+	private org.eclipse.swt.widgets.List list; 
 	private Text username;
 	private Text password;
 	private MyUser user;
-	private Collection<List> lists;
+	private Collection<List> dbList;
 	
-	public SelectionAdapterLogin(Text username, Text password, MyUser user){
+	public SelectionAdapterLogin(Shell parent, org.eclipse.swt.widgets.List list,  Text username, Text password, MyUser user){
+		this.parent = parent; 
+		this.list = list; 
 		this.username = username;
 		this.password = password;
 		this.user = user;
-		
-		
 	}
 	
 	public void widgetSelected(SelectionEvent e) {
@@ -46,12 +48,12 @@ public class SelectionAdapterLogin extends SelectionAdapter {
 			
 			ListDaoInterface listDaoInterface = (ListDaoInterface) ctx
 					.lookup("ToDo_EJB/ListDao!model.dao.ListDaoInterface");
-			lists = listDaoInterface.getListsFromUser(user);
-			for (List list : lists) {
+			dbList = listDaoInterface.getListsFromUser(user);
+			for (List list : dbList) {
 				System.out.println("List = " + list);
 			}
-			
-			createListButtons();
+			System.out.println("ListAnzahl" + dbList.size());
+			createListItem(dbList);
 			
 			
 		} catch (NamingException e1) {
@@ -60,12 +62,9 @@ public class SelectionAdapterLogin extends SelectionAdapter {
 		}
 		
 	}
-	public void createListButtons() {
-		Shell shell = username.getShell();
-		for (List l: lists) {
-			Button b = new Button(shell, SWT.SINGLE);
-			b.setText(l.getListName());
-			
+	public void createListItem(Collection<List> dbList) {
+		for (List listItem : dbList) {
+			this.list.add(listItem.getListName());
 		}
 	}
 	

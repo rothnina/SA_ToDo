@@ -55,6 +55,7 @@ public class Main {
 				System.out.println("\tuserRights = " + obj.getUserRights());
 				System.out.println("\tlist = " + obj.getList());
 			}
+			
 			// get User by Id
 			MyUser obj = myUserDaoInterface.getByPrimaryKey(1);
 			System.out.println("UserById:\n  1 = " + obj);
@@ -62,6 +63,11 @@ public class Main {
 			// get User by Username
 			obj = myUserDaoInterface.getMyUserByName("h");
 			System.out.println("User by Name:\n  h = " + obj);
+			
+			// get Lists by UserId
+			for (List l: listDaoInterface.getListsFromUser(obj)) {
+				System.out.println(l);
+			}
 
 			// save a new User
 //			obj = new MyUser("Sara", "Pech", new Date(06 - 06 - 2023), new Date(06 - 06 - 2023), null, "SP",
