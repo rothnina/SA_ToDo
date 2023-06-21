@@ -103,7 +103,7 @@ public class GUI {
 	public void createListeners() {
 		login.addSelectionListener(new SelectionAdapterLogin(shell,list, username, password, user));
 		list.addSelectionListener(new SelectionAdapterList(shell, list, listEntry, user));
-		btnListNew.addSelectionListener(null);
+		btnListNew.addSelectionListener(new SelectionAdapterListNew(shell, list, listEntry, user));
 	}
 	
 	public void open() {

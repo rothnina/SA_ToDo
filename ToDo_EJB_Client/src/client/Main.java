@@ -68,6 +68,12 @@ public class Main {
 			for (List l: listDaoInterface.getListsFromUser(obj)) {
 				System.out.println(l);
 			}
+			
+			//get Lists by Id
+			List l = listDaoInterface.getListByName("Liste 4"); 
+			for (ListEntry le: listEntryDaoInterface.getListEntriesFromCreator(obj)) {
+				System.out.println(le);
+			}
 
 			// save a new User
 //			obj = new MyUser("Sara", "Pech", new Date(06 - 06 - 2023), new Date(06 - 06 - 2023), null, "SP",

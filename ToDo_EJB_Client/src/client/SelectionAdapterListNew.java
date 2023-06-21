@@ -33,7 +33,13 @@ public class SelectionAdapterListNew extends SelectionAdapter {
 			
 			ListDaoInterface listDaoInterface = (ListDaoInterface) ctx
 					.lookup("ToDo_EJB/ListDao!model.dao.ListDaoInterface");
-			
+			InputDialog dlg = new InputDialog(parent);
+			dlg.setText("New List"); 
+		    String input = dlg.open();
+		    if (input != null) {
+		      // TODO save with user as creator
+		      System.out.println(input);
+		    }
 			
 		} catch (NamingException e1) {
 			e1.printStackTrace();
