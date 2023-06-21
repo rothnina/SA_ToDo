@@ -14,15 +14,18 @@ public class GUI {
 	private Display display; 
 	private Shell shell; 
 	private List list; 
+	private List listEntry;
 	private Label l_username;
 	private Text username;
 	private Label l_password;
 	private Text password;
 	private Button login;
-	private MyUser user = null;
+	public MyUser user;
 	
 	private Label l_label;
 	private Button[] lists;
+	private Button btnListNew, btnListChange, btnListDelete; 
+	private Button btnListEntryNew, btnListEntryChange, btnListEntryDelete; 
 
 	public GUI() {
 		
@@ -70,14 +73,37 @@ public class GUI {
 
 		list = new List(listGroup, SWT.BORDER | SWT.SINGLE | SWT.V_SCROLL); 
 		list.setLayoutData(new RowData(240, 100));
+		btnListNew = new Button(listGroup, SWT.PUSH); 
+		btnListNew.setText("new");
+		btnListChange = new Button(listGroup, SWT.PUSH); 
+		btnListChange.setText("change");
+		btnListDelete = new Button(listGroup, SWT.PUSH); 
+		btnListDelete.setText("delete");
 	}
 	
 	public void createListEntryArea() {
+		l_label = new Label(shell, SWT.CENTER);
+		l_label.setText("Listeneinträge");
+		l_label.setFont(new Font(display, "Arial", 14, SWT.BOLD));
 		
+		Group listEntryGroup = new Group(shell, SWT.LEFT); 
+		RowLayout layout = new RowLayout(SWT.VERTICAL); 
+		listEntryGroup.setLayout(layout);
+
+		listEntry = new List(listEntryGroup, SWT.BORDER | SWT.SINGLE | SWT.V_SCROLL); 
+		listEntry.setLayoutData(new RowData(240, 100));
+		btnListEntryNew = new Button(listEntryGroup, SWT.PUSH); 
+		btnListEntryNew.setText("new");
+		btnListEntryChange = new Button(listEntryGroup, SWT.PUSH); 
+		btnListEntryChange.setText("change");
+		btnListEntryDelete = new Button(listEntryGroup, SWT.PUSH); 
+		btnListEntryDelete.setText("delete");
 	}
+	
 	public void createListeners() {
 		login.addSelectionListener(new SelectionAdapterLogin(shell,list, username, password, user));
-		
+		list.addSelectionListener(new SelectionAdapterList(shell, list, listEntry, user));
+		btnListNew.addSelectionListener(null);
 	}
 	
 	public void open() {
