@@ -51,9 +51,9 @@ public class SelectionAdapterList extends SelectionAdapter {
 			{
 				System.out.println("obj = " + obj);
 			}
-			listAreaList = (org.eclipse.swt.widgets.List) listAreaElements[0]; 
-			Button btnChangeList = (Button) listAreaElements[2]; 
-			Button btnDeleteList = (Button) listAreaElements[3];
+			listAreaList = (org.eclipse.swt.widgets.List) listAreaElements[1]; 
+			Button btnChangeList = (Button) listAreaElements[3]; 
+			Button btnDeleteList = (Button) listAreaElements[4];
 			
 			ListDaoInterface listDaoInterface = (ListDaoInterface) ctx
 					.lookup("ToDo_EJB/ListDao!model.dao.ListDaoInterface");
