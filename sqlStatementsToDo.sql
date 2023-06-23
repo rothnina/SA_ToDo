@@ -40,9 +40,9 @@ create table listEntry (
      status integer, 
      toDo varchar2(100), 
      primary key (entryId), 
-     foreign key (listId) references myList(listId),
-     foreign key (responsible) references myUser(myUserId), 
-     foreign key (creator) references myUser(myUserId)
+     constraint listEntryList foreign key (listId) references myList(listId),
+     constraint listEntryResp foreign key (responsible) references myUser(myUserId), 
+     constraint listEntryCreator foreign key (creator) references myUser(myUserId)
 );
 
 select sysdate from dual;
