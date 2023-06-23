@@ -46,7 +46,7 @@ public class ListEntryDao implements java.io.Serializable {
 	}
 
 	public Collection<ListEntry> getListEntriesFromListByUser(List list, MyUser user){
-		return em.createQuery("SELECT obj FROM ListEntry obj WHERE obj.list = ?1 and obj.responsible = ?2", ListEntry.class)
+		return em.createQuery("SELECT obj FROM ListEntry obj WHERE obj.list = ?1 and (obj.responsible = ?2 or obj.creator = ?2)", ListEntry.class)
 				.setParameter(1, list).setParameter(2, user).getResultList(); 
 	}
 	
