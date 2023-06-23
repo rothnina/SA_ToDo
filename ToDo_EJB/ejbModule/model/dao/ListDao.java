@@ -48,6 +48,9 @@ public class ListDao implements java.io.Serializable {
 	}
 
 	public void save(List arg) {
+		if(arg.getListId()==0) {
+			arg.setListId(calculateNextId());
+		}
 		List obj = em.find(List.class, arg.getListId());
 		if (obj == null)
 			em.persist(arg); // insert
