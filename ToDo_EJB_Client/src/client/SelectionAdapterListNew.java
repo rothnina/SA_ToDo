@@ -1,6 +1,7 @@
 package client;
 
 import java.util.Collection;
+import java.util.Date;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -19,11 +20,12 @@ import model.entity.MyUser;
 public class SelectionAdapterListNew extends SelectionAdapter {
 	private InitialContext ctx;
 	private Shell parent; 
+	private MyUser user; 
 	
 	
 	public SelectionAdapterListNew(Shell parent,org.eclipse.swt.widgets.List l, org.eclipse.swt.widgets.List listEntry, MyUser user){
 		this.parent = parent; 
-		
+		this.user = user; 
 	}
 	
 	public void widgetSelected(SelectionEvent e) {
@@ -33,12 +35,13 @@ public class SelectionAdapterListNew extends SelectionAdapter {
 			
 			ListDaoInterface listDaoInterface = (ListDaoInterface) ctx
 					.lookup("ToDo_EJB/ListDao!model.dao.ListDaoInterface");
-			InputDialog dlg = new InputDialog(parent);
+			InputDialogNewList dlg = new InputDialogNewList(parent);
 			dlg.setText("New List"); 
 		    String input = dlg.open();
 		    if (input != null) {
-		      // TODO save with user as creator
-		      System.out.println(input);
+		    	List newList = new List(user, new Date(), input); 
+		    	listDaoInterface.save(newList); 
+		    	System.out.println(input);
 		    }
 			
 		} catch (NamingException e1) {

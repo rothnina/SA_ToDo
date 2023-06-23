@@ -46,6 +46,12 @@ public class List implements Serializable {
 		this.creationDate = creationDate; 
 		this.listName = listName; 
 	}
+	
+	public List(MyUser creator, Date creationDate, String listName ) {
+		this.creator = creator; 
+		this.creationDate = creationDate; 
+		this.listName = listName; 
+	}
 
 	
 

@@ -79,6 +79,7 @@ public class SelectionAdapterList extends SelectionAdapter {
 		
 	}
 	public void createListItem(Collection<ListEntry> dbList) {
+		listEntry.removeAll();
 		for (ListEntry listItem : dbList) {
 			this.listEntry.add(listItem.getToDo());
 		}
