@@ -12,19 +12,19 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-class InputDialog extends Dialog {
+class InputDialogNewList extends Dialog {
   private String message;
 
   private String input;
 
-  public InputDialog(Shell parent) {
+  public InputDialogNewList(Shell parent) {
     this(parent, SWT.DIALOG_TRIM | SWT.APPLICATION_MODAL);
   }
 
-  public InputDialog(Shell parent, int style) {
+  public InputDialogNewList(Shell parent, int style) {
     super(parent, style);
     setText("Input Dialog");
-    setMessage("Title");
+    //setMessage("Title");
   }
 
   public String getMessage() {
@@ -60,14 +60,35 @@ class InputDialog extends Dialog {
 
   private void createContents(final Shell shell) {
     shell.setLayout(new GridLayout(2, true));
-
+    
     Label labelTitle = new Label(shell, SWT.NONE);
     labelTitle.setText("Title: ");
-    GridData data = new GridData();
     Text inputTitle = new Text(shell, SWT.SINGLE); 
-    data.horizontalSpan = 2; 
+    
+    Label labelCreator = new Label(shell, SWT.NONE);
+    labelTitle.setText("Creator: ");
+    Text textCreator = new Text(shell, SWT.READ_ONLY);
+    textCreator.setText("TestCreator");
+    
+    Label labelListId = new Label(shell, SWT.NONE);
+    labelListId.setText("ListId: ");
+    Text textListId = new Text(shell, SWT.READ_ONLY);
+    textCreator.setText("TestListId");
+    
+    Label labelCreationDate = new Label(shell, SWT.NONE);
+    labelTitle.setText("CreationDate: ");
+    Text textCreationDate = new Text(shell, SWT.READ_ONLY);
+    textCreator.setText("TestCreationDate");
+    
+    GridData data = new GridData();
     labelTitle.setLayoutData(data);
     inputTitle.setLayoutData(data);
+    labelCreator.setLayoutData(data);
+    textCreator.setLayoutData(data);
+    labelListId.setLayoutData(data);
+    textListId.setLayoutData(data);
+    labelCreationDate.setLayoutData(data);
+    textCreationDate.setLayoutData(data);
 
     Button ok = new Button(shell, SWT.PUSH);
     ok.setText("OK");
