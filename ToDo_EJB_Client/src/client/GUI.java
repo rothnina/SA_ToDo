@@ -23,7 +23,6 @@ public class GUI {
 	public MyUser user;
 	
 	private Label l_label;
-	private Button[] lists;
 	private Button btnListNew, btnListChange, btnListDelete; 
 	private Button btnListEntryNew, btnListEntryChange, btnListEntryDelete; 
 
@@ -36,7 +35,7 @@ public class GUI {
 		createListEntryArea();
 		createListeners();
 		
-		//shell.pack();
+		shell.pack();
 	}
 	private void createDisplay() {
 		display = new Display(); 
@@ -59,17 +58,21 @@ public class GUI {
 		password = new Text(shell, SWT.SINGLE); 
 		
 		login = new Button(shell, SWT.PUSH);
+	    GridData data = new GridData();
+	    data.horizontalSpan = 2; 
+		login.setLayoutData(data);
+		
 		login.setText("Login");
 		
 	}
 	public void createListArea() {
-		l_label = new Label(shell, SWT.CENTER);
-		l_label.setText("Listen");
-		l_label.setFont(new Font(display, "Arial", 14, SWT.BOLD));
-		
 		Group listGroup = new Group(shell, SWT.LEFT); 
 		RowLayout layout = new RowLayout(SWT.VERTICAL); 
 		listGroup.setLayout(layout);
+		
+		l_label = new Label(listGroup, SWT.CENTER);
+		l_label.setText("Listen");
+		l_label.setFont(new Font(display, "Arial", 14, SWT.BOLD));
 
 		list = new List(listGroup, SWT.BORDER | SWT.SINGLE | SWT.V_SCROLL); 
 		list.setLayoutData(new RowData(240, 100));
@@ -82,13 +85,13 @@ public class GUI {
 	}
 	
 	public void createListEntryArea() {
-		l_label = new Label(shell, SWT.CENTER);
-		l_label.setText("Listeneinträge");
-		l_label.setFont(new Font(display, "Arial", 14, SWT.BOLD));
-		
 		Group listEntryGroup = new Group(shell, SWT.LEFT); 
 		RowLayout layout = new RowLayout(SWT.VERTICAL); 
 		listEntryGroup.setLayout(layout);
+		
+		l_label = new Label(listEntryGroup, SWT.CENTER);
+		l_label.setText("Listeneinträge");
+		l_label.setFont(new Font(display, "Arial", 14, SWT.BOLD));
 
 		listEntry = new List(listEntryGroup, SWT.BORDER | SWT.SINGLE | SWT.V_SCROLL); 
 		listEntry.setLayoutData(new RowData(240, 100));

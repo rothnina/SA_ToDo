@@ -51,9 +51,9 @@ public class SelectionAdapterList extends SelectionAdapter {
 			{
 				System.out.println("obj = " + obj);
 			}
-			listAreaList = (org.eclipse.swt.widgets.List) listAreaElements[0]; 
-			Button btnChangeList = (Button) listAreaElements[2]; 
-			Button btnDeleteList = (Button) listAreaElements[3];
+			listAreaList = (org.eclipse.swt.widgets.List) listAreaElements[1]; 
+			Button btnChangeList = (Button) listAreaElements[3]; 
+			Button btnDeleteList = (Button) listAreaElements[4];
 			
 			ListDaoInterface listDaoInterface = (ListDaoInterface) ctx
 					.lookup("ToDo_EJB/ListDao!model.dao.ListDaoInterface");
@@ -61,10 +61,7 @@ public class SelectionAdapterList extends SelectionAdapter {
 					.lookup("ToDo_EJB/ListEntryDao!model.dao.ListEntryDaoInterface");
 			dbList = listDaoInterface.getListByName(l.getSelection()[0]); 
 			System.out.println("DBList: " + dbList.toString());
-			//dbListEntry = listEntryDaoInterface.list(); 
 			System.out.println("User: "+user.toString());
-			//dbListEntry = listEntryDaoInterface.getListEntriesFromResponsible(user); 
-			//dbListEntry = listEntryDaoInterface.getListEntriesFromList(dbList); 
 			dbListEntry = listEntryDaoInterface.getListEntriesFromListByUser(dbList, user);  
 			System.out.println("Anzahl Listeinträge: " + dbListEntry.size()); 
 			createListItem(dbListEntry);
