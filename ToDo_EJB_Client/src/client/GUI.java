@@ -101,9 +101,9 @@ public class GUI {
 	}
 	
 	public void createListeners() {
-		login.addSelectionListener(new SelectionAdapterLogin(shell,list, username, password, user));
-		list.addSelectionListener(new SelectionAdapterList(shell, list, listEntry, user));
-		btnListNew.addSelectionListener(new SelectionAdapterListNew(shell, list, listEntry, user));
+		
+		login.addSelectionListener(new SelectionAdapterLogin(shell, username, password, user));
+		
 	}
 	
 	public void open() {

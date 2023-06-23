@@ -17,15 +17,17 @@ import model.entity.MyUser;
 public class SelectionAdapterLogin extends SelectionAdapter {
 	private InitialContext ctx;
 	private Shell parent; 
-	private org.eclipse.swt.widgets.List list; 
 	private Text username;
 	private Text password;
 	private MyUser user;
 	private Collection<List> dbList;
+	private final int listAreaIndex = 6; 
+	private final int listEntryAreaIndex = 8; 
+	private org.eclipse.swt.widgets.List listAreaList; 
+	private org.eclipse.swt.widgets.List listEntryAreaList; 
 	
-	public SelectionAdapterLogin(Shell parent, org.eclipse.swt.widgets.List list,  Text username, Text password, MyUser user){
-		this.parent = parent; 
-		this.list = list; 
+	public SelectionAdapterLogin(Shell parent,  Text username, Text password, MyUser user){
+		this.parent = parent;  
 		this.username = username;
 		this.password = password;
 		this.user = user;
@@ -34,18 +36,35 @@ public class SelectionAdapterLogin extends SelectionAdapter {
 	public void widgetSelected(SelectionEvent e) {
 		
 		MyUserDaoInterface myUserDaoInterface;
+		Control[] childrenShell = parent.getChildren(); 
+		for (Control c : childrenShell)
+		{
+			System.out.println("c = " + c);
+		}
+		Group groupListArea = (Group) childrenShell[listAreaIndex];
+		Group groupListEntryArea = (Group) childrenShell[listEntryAreaIndex]; 
+		Control[] listAreaElements = groupListArea.getChildren(); 
+		Control[] listEntryAreaElements = groupListEntryArea.getChildren();
+		for (Control obj : listAreaElements)
+		{
+			System.out.println("obj = " + obj);
+		}
+		listAreaList = (org.eclipse.swt.widgets.List) listAreaElements[0]; 
+		Button btnNewList = (Button) listAreaElements[1]; 
+		listEntryAreaList = (org.eclipse.swt.widgets.List) listEntryAreaElements[0]; 
 		try {
 			ctx = new InitialContext();
 			myUserDaoInterface = (MyUserDaoInterface) ctx
 					.lookup("ToDo_EJB/MyUserDao!model.dao.MyUserDaoInterface");
 			MyUser obj = myUserDaoInterface.getMyUserByName(username.getText());
-//			System.out.println("User by Username:\n " + username.getText() + ":" + obj);
+			System.out.println("User by Username:\n " + username.getText() + ":" + obj);
 			
 			if (password.getText().equals(obj.getPassword())) {
 				System.out.println("Hurra, das Password ist Korrekt/nDer User konnte angemeldet werden");
 				user = obj;
 			}
-			
+
+			// ....
 			ListDaoInterface listDaoInterface = (ListDaoInterface) ctx
 					.lookup("ToDo_EJB/ListDao!model.dao.ListDaoInterface");
 			dbList = listDaoInterface.getListsFromUser(user);
@@ -60,11 +79,15 @@ public class SelectionAdapterLogin extends SelectionAdapter {
 			e1.printStackTrace();
 			System.out.println("User existiert nicht!");
 		}
+		System.out.println(user.toString());
+		
+		listAreaList.addSelectionListener(new SelectionAdapterList(parent, listAreaList, listEntryAreaList, user));
+		btnNewList.addSelectionListener(new SelectionAdapterListNew(parent, listAreaList, listEntryAreaList, user));
 		
 	}
 	public void createListItem(Collection<List> dbList) {
 		for (List listItem : dbList) {
-			this.list.add(listItem.getListName());
+			this.listAreaList.add(listItem.getListName());
 		}
 	}
 	

@@ -30,6 +30,7 @@ public class SelectionAdapterList extends SelectionAdapter {
 		this.l = l; 
 		this.listEntry = listEntry; 
 		this.user = user; 
+		System.out.println( "!!!!!!!!!!!!!!!!!!!!!!Konstruktor SelectionAdapter user = " + user);
 	}
 	
 	public void widgetSelected(SelectionEvent e) {
@@ -46,8 +47,8 @@ public class SelectionAdapterList extends SelectionAdapter {
 			//dbListEntry = listEntryDaoInterface.list(); 
 			System.out.println("User: "+user.toString());
 			//dbListEntry = listEntryDaoInterface.getListEntriesFromResponsible(user); 
-			dbListEntry = listEntryDaoInterface.getListEntriesFromList(dbList); 
-			//dbListEntry = listEntryDaoInterface.getListEntriesFromListByUser(dbList, user);  
+			//dbListEntry = listEntryDaoInterface.getListEntriesFromList(dbList); 
+			dbListEntry = listEntryDaoInterface.getListEntriesFromListByUser(dbList, user);  
 			System.out.println("Anzahl Listeinträge: " + dbListEntry.size()); 
 			createListItem(dbListEntry);
 			
