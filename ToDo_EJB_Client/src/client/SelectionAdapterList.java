@@ -15,6 +15,7 @@ import model.dao.MyUserDaoInterface;
 import model.entity.List;
 import model.entity.ListEntry;
 import model.entity.MyUser;
+ 
 
 public class SelectionAdapterList extends SelectionAdapter {
 	private InitialContext ctx;
@@ -24,7 +25,9 @@ public class SelectionAdapterList extends SelectionAdapter {
 	private MyUser user; 
 	private List dbList; 
 	private org.eclipse.swt.widgets.List l; 
-	
+	private final int listAreaIndex = 6; 
+	private org.eclipse.swt.widgets.List listAreaList;
+
 	public SelectionAdapterList(Shell parent,org.eclipse.swt.widgets.List l, org.eclipse.swt.widgets.List listEntry, MyUser user){
 		this.parent = parent; 
 		this.l = l; 
@@ -37,6 +40,20 @@ public class SelectionAdapterList extends SelectionAdapter {
 		
 		try {
 			ctx = new InitialContext();
+			Control[] childrenShell = parent.getChildren(); 
+			for (Control c : childrenShell)
+			{
+				System.out.println("c = " + c);
+			}
+			Group groupListArea = (Group) childrenShell[listAreaIndex];
+			Control[] listAreaElements = groupListArea.getChildren(); 
+			for (Control obj : listAreaElements)
+			{
+				System.out.println("obj = " + obj);
+			}
+			listAreaList = (org.eclipse.swt.widgets.List) listAreaElements[0]; 
+			Button btnChangeList = (Button) listAreaElements[2]; 
+			Button btnDeleteList = (Button) listAreaElements[3];
 			
 			ListDaoInterface listDaoInterface = (ListDaoInterface) ctx
 					.lookup("ToDo_EJB/ListDao!model.dao.ListDaoInterface");
@@ -48,6 +65,8 @@ public class SelectionAdapterList extends SelectionAdapter {
 			dbListEntry = listEntryDaoInterface.getListEntriesFromListByUser(dbList, user);  
 			System.out.println("Anzahl Listeinträge: " + dbListEntry.size()); 
 			createListItem(dbListEntry);
+			btnDeleteList.addSelectionListener(new SelectionAdapterListDelete(parent, dbList));
+			
 			
 			
 		} catch (NamingException e1) {
