@@ -21,8 +21,8 @@ public class SelectionAdapterLogin extends SelectionAdapter {
 	private Text password;
 	private MyUser user;
 	private Collection<List> dbList;
-	private final int listAreaIndex = 6; 
-	private final int listEntryAreaIndex = 8; 
+	private final int listAreaIndex = 5; 
+	private final int listEntryAreaIndex = 6; 
 	private org.eclipse.swt.widgets.List listAreaList; 
 	private org.eclipse.swt.widgets.List listEntryAreaList; 
 	
@@ -49,9 +49,9 @@ public class SelectionAdapterLogin extends SelectionAdapter {
 		{
 			System.out.println("obj = " + obj);
 		}
-		listAreaList = (org.eclipse.swt.widgets.List) listAreaElements[0]; 
-		Button btnNewList = (Button) listAreaElements[1]; 
-		listEntryAreaList = (org.eclipse.swt.widgets.List) listEntryAreaElements[0]; 
+		listAreaList = (org.eclipse.swt.widgets.List) listAreaElements[1]; 
+		Button btnNewList = (Button) listAreaElements[2]; 
+		listEntryAreaList = (org.eclipse.swt.widgets.List) listEntryAreaElements[1]; 
 		try {
 			ctx = new InitialContext();
 			myUserDaoInterface = (MyUserDaoInterface) ctx

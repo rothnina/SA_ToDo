@@ -44,10 +44,7 @@ public class SelectionAdapterList extends SelectionAdapter {
 					.lookup("ToDo_EJB/ListEntryDao!model.dao.ListEntryDaoInterface");
 			dbList = listDaoInterface.getListByName(l.getSelection()[0]); 
 			System.out.println("DBList: " + dbList.toString());
-			//dbListEntry = listEntryDaoInterface.list(); 
 			System.out.println("User: "+user.toString());
-			//dbListEntry = listEntryDaoInterface.getListEntriesFromResponsible(user); 
-			//dbListEntry = listEntryDaoInterface.getListEntriesFromList(dbList); 
 			dbListEntry = listEntryDaoInterface.getListEntriesFromListByUser(dbList, user);  
 			System.out.println("Anzahl Listeinträge: " + dbListEntry.size()); 
 			createListItem(dbListEntry);
