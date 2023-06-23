@@ -62,6 +62,7 @@ public class SelectionAdapterLogin extends SelectionAdapter {
 			if (password.getText().equals(obj.getPassword())) {
 				System.out.println("Hurra, das Password ist Korrekt/nDer User konnte angemeldet werden");
 				user = obj;
+				password.setText(""); 
 			}
 
 			// ....
@@ -86,6 +87,7 @@ public class SelectionAdapterLogin extends SelectionAdapter {
 		
 	}
 	public void createListItem(Collection<List> dbList) {
+		listAreaList.removeAll();
 		for (List listItem : dbList) {
 			this.listAreaList.add(listItem.getListName());
 		}
