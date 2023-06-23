@@ -25,7 +25,7 @@ public class SelectionAdapterList extends SelectionAdapter {
 	private MyUser user; 
 	private List dbList; 
 	private org.eclipse.swt.widgets.List l; 
-	private final int listAreaIndex = 6; 
+	private final int listAreaIndex = 5; 
 	private org.eclipse.swt.widgets.List listAreaList;
 
 	public SelectionAdapterList(Shell parent,org.eclipse.swt.widgets.List l, org.eclipse.swt.widgets.List listEntry, MyUser user){
@@ -65,6 +65,7 @@ public class SelectionAdapterList extends SelectionAdapter {
 			dbListEntry = listEntryDaoInterface.getListEntriesFromListByUser(dbList, user);  
 			System.out.println("Anzahl Listeinträge: " + dbListEntry.size()); 
 			createListItem(dbListEntry);
+			
 			btnDeleteList.addSelectionListener(new SelectionAdapterListDelete(parent, dbList));
 			
 			
