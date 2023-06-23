@@ -65,30 +65,9 @@ class InputDialogNewList extends Dialog {
     labelTitle.setText("Title: ");
     Text inputTitle = new Text(shell, SWT.SINGLE); 
     
-    Label labelCreator = new Label(shell, SWT.NONE);
-    labelTitle.setText("Creator: ");
-    Text textCreator = new Text(shell, SWT.READ_ONLY);
-    textCreator.setText("TestCreator");
-    
-    Label labelListId = new Label(shell, SWT.NONE);
-    labelListId.setText("ListId: ");
-    Text textListId = new Text(shell, SWT.READ_ONLY);
-    textCreator.setText("TestListId");
-    
-    Label labelCreationDate = new Label(shell, SWT.NONE);
-    labelTitle.setText("CreationDate: ");
-    Text textCreationDate = new Text(shell, SWT.READ_ONLY);
-    textCreator.setText("TestCreationDate");
-    
     GridData data = new GridData();
     labelTitle.setLayoutData(data);
     inputTitle.setLayoutData(data);
-    labelCreator.setLayoutData(data);
-    textCreator.setLayoutData(data);
-    labelListId.setLayoutData(data);
-    textListId.setLayoutData(data);
-    labelCreationDate.setLayoutData(data);
-    textCreationDate.setLayoutData(data);
 
     Button ok = new Button(shell, SWT.PUSH);
     ok.setText("OK");
