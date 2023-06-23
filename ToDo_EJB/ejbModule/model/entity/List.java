@@ -1,11 +1,10 @@
 package model.entity;
 
 import java.io.Serializable;
-
+import java.util.Collection;
 import java.util.Date;
 
 import jakarta.persistence.*;
-
 
 //create table myList (
 //    listId integer primary key,
@@ -22,7 +21,7 @@ public class List implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "listId") //not necessary because the name is identical with them in the database
+	@Column(name = "listId") // not necessary because the name is identical with them in the database
 	private int listId;
 
 	@ManyToOne
@@ -31,20 +30,21 @@ public class List implements Serializable {
 
 	@Column(name = "creationDate")
 	private Date creationDate;
-	
+
 	@Column(name = "listName")
-	private String listName; 
-	
-	
+	private String listName;
+
+	@OneToMany( cascade = CascadeType.ALL, mappedBy = "list")
+	private Collection<ListEntry> listEntries;
 
 	public List() {
 	}
 
-	public List(int listId, MyUser creator, Date creationDate, String listName ) {
-		this.listId = listId; 
-		this.creator = creator; 
-		this.creationDate = creationDate; 
-		this.listName = listName; 
+	public List(int listId, MyUser creator, Date creationDate, String listName) {
+		this.listId = listId;
+		this.creator = creator;
+		this.creationDate = creationDate;
+		this.listName = listName;
 	}
 	
 	public List(MyUser creator, Date creationDate, String listName ) {
@@ -52,8 +52,6 @@ public class List implements Serializable {
 		this.creationDate = creationDate; 
 		this.listName = listName; 
 	}
-
-	
 
 	public int getListId() {
 		return listId;
